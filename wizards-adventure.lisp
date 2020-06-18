@@ -5,6 +5,7 @@
                         (attic (you are in the attic
                                     there is a giant welding torch in the corner.))))
 
+
 (defparameter *edges* '((living-room (garden west door) (attic upstairs ladder))
                         (garden (living-room east door ))
                         (attic (living-room downstairs ladder))))
@@ -67,3 +68,17 @@
 
 (walk 'east)
 (pickup 'whiskey)
+(look)
+
+(defun inventory ()
+  (cons 'items- (objects-at 'body *objects* *object-locations*)))
+
+(inventory)
+
+(defun game-repl()
+  (let ((cmd (game-read)))
+    (unless (eq (car cmd) 'quit)
+      (game-print (game-eval cmd))
+      (game-repl))))
+
+
